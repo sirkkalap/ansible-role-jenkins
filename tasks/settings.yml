@@ -6,6 +6,13 @@
     line: 'JENKINS_ARGS+=" --prefix={{ jenkins_url_prefix }}"'
   register: jenkins_init_config
 
+- name: Ensure Jenkins uses IPV4
+  lineinfile:
+    dest: "{{ jenkins_init_file }}"
+    insertafter: '^JENKINS_JAVA_OPTIONS='
+    line: 'JENKINS_JAVA_OPTIONS+=" -Djava.net.preferIPv4Stack=true "'
+  register: jenkins_init_config
+
 - name: Immediately restart Jenkins on init config changes.
   service: name=jenkins state=restarted
   when: jenkins_init_config.changed
