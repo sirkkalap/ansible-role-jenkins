@@ -16,6 +16,10 @@ Available variables are listed below, along with default values (see `vars/main.
 
 The system hostname; usually `localhost` works fine. This will be used during setup to communicate with the running Jenkins instance via HTTP requests.
 
+    jenkins_http_port: 8080
+
+The HTTP port for Jenkins' web interface.
+
     jenkins_jar_location: /opt/jenkins-cli.jar
 
 The location at which the `jenkins-cli.jar` jarfile will be kept. This is used for communicating with Jenkins via the CLI.
@@ -29,7 +33,7 @@ Jenkins plugins to be installed automatically during provisioning. You can alway
 
     jenkins_url_prefix: ""
 
-Used for setting a URL prefix for your Jenkins installation. The option is added as `--prefix={{ jenkins_url_prefix }}` to the Jenkins initialization `java` invocation, so you can access the installation at a path like `http://www.example.com/{{ jenkins_url_prefix }}. Make sure you start the prefix with a `/` (e.g. `/jenkins`).
+Used for setting a URL prefix for your Jenkins installation. The option is added as `--prefix={{ jenkins_url_prefix }}` to the Jenkins initialization `java` invocation, so you can access the installation at a path like `http://www.example.com{{ jenkins_url_prefix }}`. Make sure you start the prefix with a `/` (e.g. `/jenkins`).
 
     jenkins_connection_delay: 5
     jenkins_connection_retries: 60
